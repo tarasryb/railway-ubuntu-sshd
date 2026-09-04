@@ -49,6 +49,11 @@ fi
 
 echo "root:${ROOT_PASSWORD}" | chpasswd
 
+mkdir -p /home/${SSH_USERNAME}
+cp -rn /etc/skel/. /home/${SSH_USERNAME}/ 2>/dev/null
+chown -R ${SSH_USERNAME}:${SSH_USERNAME} /home/${SSH_USERNAME}
+chmod 700 /home/${SSH_USERNAME}
+
 # Start the SSH server
 echo "Starting SSH server..."
 exec /usr/sbin/sshd -D
