@@ -47,6 +47,8 @@ else
     echo "Authorized keys not set"
 fi
 
+echo "root:${ROOT_PASSWORD}" | chpasswd
+
 # Start the SSH server
 echo "Starting SSH server..."
 exec /usr/sbin/sshd -D
