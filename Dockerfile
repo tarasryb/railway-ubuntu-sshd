@@ -18,6 +18,8 @@ RUN apt-get update \
 # Copy ssh user config to configure user's password and authorized keys
 COPY ssh-user-config.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/ssh-user-config.sh
+RUN sed -i 's/#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+echo "root:${ROOT_PASSWORD}" | chpasswd
 
 # Expose port 22
 EXPOSE 22
